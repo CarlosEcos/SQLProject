@@ -1,34 +1,7 @@
 USE Employees;
 GO
 
--- GET NUMBER OF EMPLOYEES BY YEAR, GENDER AND DEPARTMENT
-/*
-SELECT
-	YEAR(de.from_date) AS [Year],
-	CASE e.gender
-		WHEN 'M' THEN 'Male'
-		WHEN 'F' THEN 'Female'
-	END AS [Gender],
-	d.dept_name AS [Department],
-	COUNT(de.emp_no) as [NumberOfEmployees]
-FROM dbo.dept_emp de
-JOIN dbo.employees e ON de.emp_no = e.emp_no
-JOIN dbo.departments d ON de.dept_no = d.dept_no
-GROUP BY 
-	YEAR(de.from_date),
-	e.gender,
-	d.dept_name
-ORDER BY
-	YEAR(de.from_date),
-	d.dept_name,
-	e.gender;
-GO
-
-DECLARE @min_year INT
-EXEC dbo.select_last_n_year 
-	@n = 10, 
-	@year = @min_year OUTPUT
-*/
+-- PROCEDURE TO GET THE DATA OF EMPLOYEES AND THEIR JOBS IN THE LAST N YEARS
 
 CREATE PROCEDURE dbo.last_n_years_contract_data
 	@n INT
